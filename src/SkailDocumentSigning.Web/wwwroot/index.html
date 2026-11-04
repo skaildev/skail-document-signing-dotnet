@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document signing · skail demo</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Document signing</h1>
+      <p class="subtitle">A skail function sends the contract to Legal and Finance at the same time and waits for both signatures, in
+        any order, until a deadline. The second signature archives it, a refusal cancels it at once, and the deadline expires it.</p>
+    </header>
+
+    <section class="controls">
+      <label for="title">Contract</label>
+      <input id="title" type="text" maxlength="120" placeholder="Service agreement">
+      <button id="start" type="button">Send for signature</button>
+    </section>
+
+    <section class="status">
+      <span id="state" class="badge idle">Idle</span>
+      <span id="countdown" class="countdown" hidden></span>
+      <a id="monitor" href="#" target="_blank" rel="noopener" hidden>Open the skail Monitor</a>
+    </section>
+
+    <p id="error" class="error" hidden></p>
+
+    <section id="result" class="result" hidden></section>
+
+    <section class="areas">
+      <article class="area" data-area="legal">
+        <h2>Legal <span class="pill Pending" data-role="status">Pending</span></h2>
+        <p class="detail" data-role="detail"></p>
+        <input type="text" data-role="by" placeholder="Legal team" aria-label="Signed by" maxlength="60">
+        <input type="text" data-role="reason" placeholder="only for a refusal" aria-label="Reason" maxlength="200">
+        <div class="buttons">
+          <button type="button" data-role="sign">Sign</button>
+          <button type="button" data-role="refuse" class="danger">Refuse</button>
+        </div>
+      </article>
+      <article class="area" data-area="finance">
+        <h2>Finance <span class="pill Pending" data-role="status">Pending</span></h2>
+        <p class="detail" data-role="detail"></p>
+        <input type="text" data-role="by" placeholder="Finance team" aria-label="Signed by" maxlength="60">
+        <input type="text" data-role="reason" placeholder="only for a refusal" aria-label="Reason" maxlength="200">
+        <div class="buttons">
+          <button type="button" data-role="sign">Sign</button>
+          <button type="button" data-role="refuse" class="danger">Refuse</button>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <h2>Timeline</h2>
+      <ol id="timeline" class="timeline"></ol>
+    </section>
+
+    <footer>Contract <code id="contractId">-</code></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
